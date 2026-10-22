@@ -1,0 +1,20 @@
+# Database — contains live data, do not push
+data/governance.db
+data/*.db-shm
+data/*.db-wal
+
+# Uploaded files — large binary files, do not push
+uploads/*
+!uploads/.gitkeep
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

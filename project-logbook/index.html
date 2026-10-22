@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Engine — Project Governance Portal</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════════════════════════ -->
+<nav id="sidebar" aria-label="Main navigation">
+  <div class="sb-brand">
+    <div class="sb-brand-icon" aria-hidden="true">⚙</div>
+    <div>
+      <div class="sb-brand-title">Project Status Portal</div>
+      <div class="sb-brand-sub">Search Engine — Faculty View</div>
+    </div>
+  </div>
+
+  <div class="sb-nav">
+    <!-- 5 consolidated nav items -->
+    <div class="sb-item active" data-page="dashboard" role="button" tabindex="0">
+      <span class="sb-icon" aria-hidden="true">◈</span>
+      <span class="sb-label">Project Overview</span>
+    </div>
+    <div class="sb-item" data-page="meeting-docs" role="button" tabindex="0">
+      <span class="sb-icon" aria-hidden="true">📋</span>
+      <span class="sb-label">Meeting Documentation</span>
+    </div>
+    <div class="sb-item" data-page="meetings-instructions" role="button" tabindex="0">
+      <span class="sb-icon" aria-hidden="true">▦</span>
+      <span class="sb-label">Meetings &amp; Instructions</span>
+    </div>
+    <div class="sb-item" data-page="search-archive" role="button" tabindex="0">
+      <span class="sb-icon" aria-hidden="true">⌕</span>
+      <span class="sb-label">Discussion Archive</span>
+    </div>
+    <div class="sb-item" data-page="team-tasks" role="button" tabindex="0">
+      <span class="sb-icon" aria-hidden="true">◎</span>
+      <span class="sb-label">Team &amp; Tasks</span>
+    </div>
+    <div class="sb-item" data-page="technical-progress" role="button" tabindex="0">
+      <span class="sb-icon" aria-hidden="true">◈</span>
+      <span class="sb-label">Technical Progress</span>
+    </div>
+    <div class="sb-item" data-page="issues-reports" role="button" tabindex="0">
+      <span class="sb-icon" aria-hidden="true">◬</span>
+      <span class="sb-label">Issues &amp; Reports</span>
+    </div>
+
+    <!-- Divider before admin links -->
+    <div style="margin:12px 16px 4px;height:1px;background:rgba(255,255,255,.07)"></div>
+    <div class="sb-section" style="font-size:9px;opacity:.5">Admin / Data Entry</div>
+    <div class="sb-item" data-page="meetings" role="button" tabindex="0" style="opacity:.65;font-size:11px">
+      <span class="sb-icon" aria-hidden="true">▸</span>
+      <span class="sb-label">Meeting Records</span>
+    </div>
+    <div class="sb-item" data-page="directives" role="button" tabindex="0" style="opacity:.65;font-size:11px">
+      <span class="sb-icon" aria-hidden="true">▸</span>
+      <span class="sb-label">Directives Register</span>
+    </div>
+    <div class="sb-item" data-page="contributions" role="button" tabindex="0" style="opacity:.65;font-size:11px">
+      <span class="sb-icon" aria-hidden="true">▸</span>
+      <span class="sb-label">Member Profiles</span>
+    </div>
+    <div class="sb-item" data-page="dev-history" role="button" tabindex="0" style="opacity:.65;font-size:11px">
+      <span class="sb-icon" aria-hidden="true">▸</span>
+      <span class="sb-label">Change Register</span>
+    </div>
+    <div class="sb-item" data-page="testing" role="button" tabindex="0" style="opacity:.65;font-size:11px">
+      <span class="sb-icon" aria-hidden="true">▸</span>
+      <span class="sb-label">Testing Records</span>
+    </div>
+    <div class="sb-item" data-page="config" role="button" tabindex="0" style="opacity:.65;font-size:11px">
+      <span class="sb-icon" aria-hidden="true">▸</span>
+      <span class="sb-label">Configuration</span>
+    </div>
+  </div>
+
+  <div class="sb-footer">
+    v2.0 · localStorage
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════════════════ -->
+<div id="main-content">
+
+  <!-- Top bar -->
+  <header id="topbar">
+    <button id="mobile-menu-btn" class="btn btn-ghost btn-icon no-print"
+            style="display:none" aria-label="Toggle sidebar">☰</button>
+    <div class="tb-breadcrumb">
+      <span class="t-muted t-xs">Search Engine</span>
+      <span class="t-muted t-xs" aria-hidden="true"> / </span>
+      <span class="tb-section" id="tb-section">Project Overview</span>
+    </div>
+    <div class="tb-spacer"></div>
+    <div class="tb-actions no-print">
+      <div class="search-box" title="Global search (use page-level filters for detailed search)">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input type="text" id="global-search" placeholder="Global search…"
+               autocomplete="off" aria-label="Global search">
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════
+       PRIMARY FACULTY DASHBOARD (simplified view)
+  ══════════════════════════════════════════════════════ -->
+  <div class="page active" id="page-dashboard">
+    <!-- Top action bar -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:8px">
+      <div>
+        <div style="font-size:16px;font-weight:700;color:var(--text)" id="dash-project-name">Study-Material Search Engine</div>
+        <div style="font-size:11px;color:var(--text-3);margin-top:2px" id="dash-meta-line">Faculty view · Last updated: —</div>
+      </div>
+      <div style="display:flex;gap:8px" class="no-print">
+        <button class="btn btn-secondary btn-sm" onclick="window.print()">🖨 Print</button>
+        <button class="btn btn-primary btn-sm" onclick="UI.navigate('config')">⚙ Settings</button>
+      </div>
+    </div>
+    <div id="dashboard-content"></div>
+  </div>
+
+  <!-- ── PAGE: MEETING DOCUMENTATION (MoM) ───────────────── -->
+  <div class="page" id="page-meeting-docs">
+    <!-- List view (default) -->
+    <div id="mom-list-view">
+      <div class="pg-header">
+        <div>
+          <div class="pg-title">Meeting Documentation</div>
+          <div class="pg-sub">Formal minutes of meeting — published documents are readable by all authorized members</div>
+        </div>
+        <div class="pg-actions no-print">
+          <button class="btn btn-primary" onclick="momOpenEditor()">+ New Meeting Document</button>
+        </div>
+      </div>
+      <div id="mom-list-content"></div>
+    </div>
+
+    <!-- Editor view (admin only) -->
+    <div id="mom-editor-view" style="display:none">
+      <div class="detail-back no-print" onclick="momBackToList()">← Meeting Documentation</div>
+      <div class="flex f-jb f-ac flex-wrap gap-3 mb-4">
+        <div>
+          <div class="pg-title" id="mom-editor-heading">New Meeting Document</div>
+          <div class="pg-sub">Draft — not yet published</div>
+        </div>
+        <div class="flex gap-2 no-print flex-wrap">
+          <button class="btn btn-secondary btn-sm" onclick="momSave('Draft')">💾 Save Draft</button>
+          <button class="btn btn-primary btn-sm" onclick="momSave('Published')">✓ Publish Meeting Notes</button>
+          <button class="btn btn-ghost btn-sm" onclick="momBackToList()">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Header fields -->
+      <div class="card mb-4">
+        <div class="card-header"><div class="card-title">Meeting Details</div></div>
+        <div class="card-body">
+          <div class="fg-row">
+            <div class="fg">
+              <label class="lbl">Meeting Title <span class="req">*</span></label>
+              <input id="mom-title" class="fc" required placeholder="e.g. Progress Review — Search Engine Development">
+              <div class="f-err">Title is required</div>
+            </div>
+            <div class="fg">
+              <label class="lbl">Meeting Date <span class="req">*</span></label>
+              <input id="mom-date" type="date" class="fc" required>
+              <div class="f-err">Date is required</div>
+            </div>
+          </div>
+          <div class="fg-row">
+            <div class="fg">
+              <label class="lbl">Participants</label>
+              <input id="mom-participants" class="fc" placeholder="e.g. All team members, Ma'am Priya">
+            </div>
+            <div class="fg">
+              <label class="lbl">Prepared By</label>
+              <input id="mom-author" class="fc" placeholder="Your name">
+            </div>
+          </div>
+          <div class="fg">
+            <label class="lbl">Agenda / Objective</label>
+            <input id="mom-objective" class="fc" placeholder="Purpose of this meeting">
+          </div>
+        </div>
+      </div>
+
+      <!-- Rich-text notes -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <div class="card-title">Discussion Notes</div>
+          <div class="card-sub">Write everything discussed — use headings, bullet points, and paragraphs to organize by topic</div>
+        </div>
+        <div class="mom-editor" id="mom-rich-editor-wrap">
+          <div class="mom-editor-toolbar" role="toolbar" aria-label="Formatting options">
+            <button class="mom-tb-btn" onclick="momFmt('bold')" title="Bold"><b>B</b></button>
+            <button class="mom-tb-btn" onclick="momFmt('italic')" title="Italic"><i>I</i></button>
+            <button class="mom-tb-btn" onclick="momFmt('underline')" title="Underline"><u>U</u></button>
+            <div class="mom-tb-sep"></div>
+            <button class="mom-tb-btn" onclick="momFmtBlock('H2')" title="Heading 2" style="font-size:11px">H2</button>
+            <button class="mom-tb-btn" onclick="momFmtBlock('H3')" title="Heading 3" style="font-size:10px">H3</button>
+            <button class="mom-tb-btn" onclick="momFmtBlock('P')" title="Paragraph" style="font-size:10px">¶</button>
+            <div class="mom-tb-sep"></div>
+            <button class="mom-tb-btn" onclick="momFmt('insertUnorderedList')" title="Bullet list">•≡</button>
+            <button class="mom-tb-btn" onclick="momFmt('insertOrderedList')" title="Numbered list">1≡</button>
+            <div class="mom-tb-sep"></div>
+            <button class="mom-tb-btn" onclick="momFmtBlock('BLOCKQUOTE')" title="Quote / faculty statement">❝</button>
+          </div>
+          <div id="mom-notes-editor" class="mom-editor-area"
+               contenteditable="true"
+               role="textbox" aria-multiline="true"
+               aria-label="Discussion notes"
+               data-placeholder="Start writing discussion notes here…
+&#10;Tip: Use Heading 2 for topics (e.g. Database Design), bullet points for items discussed, and blockquote for instructions from faculty."
+          ></div>
+        </div>
+      </div>
+
+      <!-- Structured fields -->
+      <div class="card mb-4">
+        <div class="card-header"><div class="card-title">Instructions, Decisions &amp; Tasks</div>
+          <div class="card-sub">These fields are optional — fill in what applies to this meeting</div>
+        </div>
+        <div class="card-body">
+          <div class="fg">
+            <label class="lbl">Instructions Given by Faculty (sir / ma'am)</label>
+            <textarea id="mom-instructions" class="fc" rows="3"
+              placeholder="Record each instruction faithfully. Do not paraphrase in a way that changes the meaning."></textarea>
+          </div>
+          <div class="fg">
+            <label class="lbl">Decisions Made</label>
+            <textarea id="mom-decisions" class="fc" rows="3"
+              placeholder="What was agreed or resolved during the meeting?"></textarea>
+          </div>
+          <div class="fg">
+            <label class="lbl">Tasks Assigned</label>
+            <textarea id="mom-tasks-assigned" class="fc" rows="3"
+              placeholder="Who was assigned what task? Include responsible member and any deadline."></textarea>
+          </div>
+          <div class="fg">
+            <label class="lbl">Pending Questions &amp; Next Steps</label>
+            <textarea id="mom-next-steps" class="fc" rows="3"
+              placeholder="Unresolved questions, planned follow-ups, and items for the next meeting."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image attachments -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <div class="card-title">Photos &amp; Diagrams</div>
+          <div class="card-sub">Upload photos of whiteboard notes, handwritten notes, diagrams, or screenshots shown during the meeting</div>
+        </div>
+        <div class="card-body">
+          <!-- Drop zone -->
+          <div class="mom-dropzone no-print" id="mom-dropzone"
+               onclick="document.getElementById('mom-file-input').click()"
+               ondragover="event.preventDefault();this.classList.add('drag-over')"
+               ondragleave="this.classList.remove('drag-over')"
+               ondrop="momHandleDrop(event)">
+            <input type="file" id="mom-file-input" accept="image/png,image/jpeg,image/jpg,image/webp"
+                   multiple style="display:none" onchange="momHandleFiles(this.files)">
+            <div class="mom-dropzone-icon">📸</div>
+            <div class="mom-dropzone-label">Click to select images, or drag and drop</div>
+            <div class="mom-dropzone-hint">PNG, JPG, JPEG, WEBP · Max 15MB each · Multiple files allowed</div>
+          </div>
+          <!-- Image strip -->
+          <div class="mom-img-strip" id="mom-img-strip"></div>
+          <div id="mom-upload-status" class="t-xs t-muted mt-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reading / Faculty view -->
+    <div id="mom-reader-view" style="display:none">
+      <div class="no-print" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+        <div class="detail-back" onclick="momBackToList()">← Meeting Documentation</div>
+        <div class="flex gap-2 no-print">
+          <button class="btn btn-secondary btn-sm" id="mom-reader-edit-btn" onclick="momEditCurrent()">✏ Edit</button>
+          <button class="btn btn-secondary btn-sm" onclick="momPrint()">🖨 Print / Export PDF</button>
+          <button class="btn btn-ghost btn-sm" id="mom-reader-delete-btn" onclick="momDeleteCurrent()">Delete</button>
+        </div>
+      </div>
+      <div class="mom-reading-view" id="mom-reading-content"></div>
+    </div>
+  </div>
+
+  <!-- ── CONSOLIDATED: MEETINGS & INSTRUCTIONS ─────────── -->
+  <div class="page" id="page-meetings-instructions">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Meetings &amp; Discussion History</div>
+        <div class="pg-sub">Chronological meeting records, verbatim discussion history, faculty instructions, and shared media gallery</div>
+      </div>
+      <div class="pg-actions no-print">
+        <button class="btn btn-secondary" onclick="openMeetingReportModal()">📄 Export Report</button>
+        <button class="btn btn-secondary" onclick="openDirectiveModal()">+ Add Instruction</button>
+        <button class="btn btn-primary" onclick="openMeetingModal()">+ Add Meeting</button>
+      </div>
+    </div>
+    <div id="mi-content"></div>
+  </div>
+
+  <!-- ── PAGE: DISCUSSION SEARCH ARCHIVE ──────────────── -->
+  <div class="page" id="page-search-archive">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Discussion Archive</div>
+        <div class="pg-sub">Search all meeting discussions, faculty instructions, decisions, and attached images</div>
+      </div>
+    </div>
+    <div id="search-archive-content"></div>
+  </div>
+
+  <!-- ── CONSOLIDATED: TEAM & TASKS ────────────────────── -->
+  <div class="page" id="page-team-tasks">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Team &amp; Tasks</div>
+        <div class="pg-sub">All members, their responsibilities, completed work, and pending tasks</div>
+      </div>
+      <div class="pg-actions no-print">
+        <button class="btn btn-secondary" onclick="openTaskModal()">+ Task</button>
+        <button class="btn btn-primary" onclick="openMemberModal()">+ Member</button>
+      </div>
+    </div>
+    <div id="tt-content"></div>
+  </div>
+
+  <!-- ── CONSOLIDATED: TECHNICAL PROGRESS ─────────────── -->
+  <div class="page" id="page-technical-progress">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Technical Progress</div>
+        <div class="pg-sub">Changes to the search engine, database, and retrieval methods — with technical decisions</div>
+      </div>
+      <div class="pg-actions no-print">
+        <button class="btn btn-secondary" onclick="openDecisionModal()">+ Decision</button>
+        <button class="btn btn-primary" onclick="openChangeModal()">+ Change</button>
+      </div>
+    </div>
+    <div id="tp-content"></div>
+  </div>
+
+  <!-- ── CONSOLIDATED: ISSUES & REPORTS ────────────────── -->
+  <div class="page" id="page-issues-reports">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Issues &amp; Reports</div>
+        <div class="pg-sub">Current blockers, next steps, and formal report generation</div>
+      </div>
+      <div class="pg-actions no-print">
+        <button class="btn btn-secondary" onclick="openIssueModal()">+ Issue</button>
+        <button class="btn btn-primary" onclick="generateReport()">▶ Generate Report</button>
+      </div>
+    </div>
+    <div id="ir-content"></div>
+  </div>
+
+  <!-- ── PAGE: PROJECT OVERVIEW (original — kept for data) ─ -->
+  <div class="page" id="page-overview">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Project Overview</div>
+        <div class="pg-sub">Live metrics calculated from recorded data — all figures are traceable to source records</div>
+      </div>
+      <div class="pg-actions no-print">
+        <button class="btn btn-secondary" onclick="UI.navigate('config')">⚙ Project Settings</button>
+      </div>
+    </div>
+    <div id="overview-content"></div>
+  </div>
+
+  <!-- ── PAGE: MEETING REGISTER ──────────────────────────── -->
+  <div class="page" id="page-meetings">
+    <!-- List view -->
+    <div id="meetings-list-view">
+      <div class="pg-header">
+        <div>
+          <div class="pg-title">Meeting Register</div>
+          <div class="pg-sub">Formal minutes for every project meeting — chronological, searchable, with lifecycle states</div>
+        </div>
+        <div class="pg-actions no-print">
+          <button class="btn btn-primary" onclick="openMeetingModal()">+ Add Meeting</button>
+        </div>
+      </div>
+      <div class="filter-bar no-print">
+        <span class="filter-lbl">Search:</span>
+        <input type="text" id="mtg-search" class="fc" placeholder="Search meetings…" style="width:180px">
+        <span class="filter-lbl">Type:</span>
+        <select id="mtg-type-filter" class="fc" style="width:160px">
+          <option value="">All types</option>
+          <option>Regular Meeting</option>
+          <option>Faculty Review</option>
+          <option>Technical Discussion</option>
+          <option>Project Demonstration</option>
+          <option>Other</option>
+        </select>
+        <span class="filter-lbl">State:</span>
+        <select id="mtg-state-filter" class="fc" style="width:130px">
+          <option value="">All states</option>
+          <option>Draft</option>
+          <option>Reviewed</option>
+          <option>Finalized</option>
+        </select>
+      </div>
+      <div id="meetings-list-content"></div>
+    </div>
+    <!-- Detail view -->
+    <div id="meetings-detail-view" style="display:none">
+      <div id="meetings-detail-content"></div>
+    </div>
+  </div>
+
+  <!-- ── PAGE: FACULTY DIRECTIVES ────────────────────────── -->
+  <div class="page" id="page-directives">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Faculty Directives</div>
+        <div class="pg-sub">Central register of every instruction and requirement from faculty — with full traceability</div>
+      </div>
+      <div class="pg-actions no-print">
+        <button class="btn btn-primary" onclick="openDirectiveModal()">+ Add Directive</button>
+      </div>
+    </div>
+    <div class="filter-bar no-print">
+      <span class="filter-lbl">Search:</span>
+      <input type="text" id="dir-search" class="fc" placeholder="Search directives…" style="width:180px">
+      <span class="filter-lbl">Status:</span>
+      <select id="dir-status-filter" class="fc" style="width:180px">
+        <option value="">All statuses</option>
+        <option>Not Started</option>
+        <option>In Progress</option>
+        <option>Blocked</option>
+        <option>Submitted for Review</option>
+        <option>Changes Requested</option>
+        <option>Completed and Verified</option>
+      </select>
+      <span class="filter-lbl">Priority:</span>
+      <select id="dir-prio-filter" class="fc" style="width:120px">
+        <option value="">All</option>
+        <option>Critical</option>
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+      </select>
+    </div>
+    <div id="directives-content"></div>
+  </div>
+
+  <!-- ── PAGE: TEAM CONTRIBUTIONS ────────────────────────── -->
+  <div class="page" id="page-contributions">
+    <div id="contrib-list-view">
+      <div class="pg-header">
+        <div>
+          <div class="pg-title">Team Contributions</div>
+          <div class="pg-sub">Individual profiles, task assignments, deliverable evidence, and contribution history</div>
+        </div>
+        <div class="pg-actions no-print">
+          <button class="btn btn-secondary" onclick="openTaskModal()">+ Add Task</button>
+          <button class="btn btn-primary" onclick="openMemberModal()">+ Add Member</button>
+        </div>
+      </div>
+      <div id="contrib-list-content"></div>
+    </div>
+    <div id="contrib-detail-view" style="display:none">
+      <div id="contrib-detail-content"></div>
+    </div>
+  </div>
+
+  <!-- ── PAGE: TASKS & MILESTONES ────────────────────────── -->
+  <div class="page" id="page-tasks-milestones">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Tasks &amp; Milestones</div>
+        <div class="pg-sub">All tasks linked to directives and members — milestones and project timeline</div>
+      </div>
+      <div class="pg-actions no-print">
+        <button class="btn btn-secondary" onclick="openMilestoneModal()">+ Milestone</button>
+        <button class="btn btn-primary" onclick="openTaskModal()">+ Task</button>
+      </div>
+    </div>
+    <div class="tabs no-print" id="tm-tabs">
+      <button class="tab-btn active" data-tab="tasks">All Tasks</button>
+      <button class="tab-btn" data-tab="milestones">Milestones</button>
+      <button class="tab-btn" data-tab="timeline">Timeline</button>
+    </div>
+    <div class="filter-bar no-print" id="tm-filter-bar">
+      <span class="filter-lbl">Search:</span>
+      <input type="text" id="tm-search" class="fc" placeholder="Search tasks…" style="width:180px">
+      <span class="filter-lbl">Status:</span>
+      <select id="tm-status-filter" class="fc" style="width:150px">
+        <option value="">All statuses</option>
+        <option>Not Started</option>
+        <option>In Progress</option>
+        <option>Blocked</option>
+        <option>Awaiting Review</option>
+        <option>Completed</option>
+      </select>
+    </div>
+    <div id="tm-content"></div>
+  </div>
+
+  <!-- ── PAGE: DEVELOPMENT HISTORY ───────────────────────── -->
+  <div class="page" id="page-dev-history">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Development History</div>
+        <div class="pg-sub">Chronological change register with unique IDs, subsystem classification, and verification status</div>
+      </div>
+      <div class="pg-actions no-print">
+        <button class="btn btn-primary" onclick="openChangeModal()">+ Record Change</button>
+      </div>
+    </div>
+    <div class="tabs no-print" id="chg-tabs">
+      <button class="tab-btn active" data-tab="all">All Changes</button>
+      <button class="tab-btn" data-tab="Document Processing">Document Processing</button>
+      <button class="tab-btn" data-tab="Database">Database</button>
+      <button class="tab-btn" data-tab="Search &amp; Retrieval">Search &amp; Retrieval</button>
+      <button class="tab-btn" data-tab="Frontend">Frontend</button>
+      <button class="tab-btn" data-tab="Backend">Backend</button>
+      <button class="tab-btn" data-tab="Other">Other</button>
+    </div>
+    <div id="chg-content"></div>
+  </div>
+
+  <!-- ── PAGE: TECHNICAL DECISIONS ───────────────────────── -->
+  <div class="page" id="page-decisions">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Technical Decisions</div>
+        <div class="pg-sub">Engineering decisions register — what was considered, what was chosen, and why</div>
+      </div>
+      <div class="pg-actions no-print">
+        <button class="btn btn-primary" onclick="openDecisionModal()">+ Add Decision</button>
+      </div>
+    </div>
+    <div class="filter-bar no-print">
+      <span class="filter-lbl">Search:</span>
+      <input type="text" id="dec-search" class="fc" placeholder="Search decisions…" style="width:180px">
+      <span class="filter-lbl">Status:</span>
+      <select id="dec-status-filter" class="fc" style="width:160px">
+        <option value="">All</option>
+        <option>Under Review</option>
+        <option>Approved</option>
+        <option>Rejected</option>
+        <option>Deferred</option>
+        <option>Implemented</option>
+      </select>
+    </div>
+    <div id="decisions-content"></div>
+  </div>
+
+  <!-- ── PAGE: TESTING & EVALUATION ──────────────────────── -->
+  <div class="page" id="page-testing">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Testing &amp; Evaluation</div>
+        <div class="pg-sub">Test sessions, retrieval metrics (P@K, R@K, MRR, NDCG), latency, and result comparisons</div>
+      </div>
+      <div class="pg-actions no-print">
+        <button class="btn btn-primary" onclick="openTestModal()">+ Add Test Record</button>
+      </div>
+    </div>
+    <div id="testing-content"></div>
+  </div>
+
+  <!-- ── PAGE: ISSUES & RISKS ────────────────────────────── -->
+  <div class="page" id="page-issues">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Issues &amp; Risks</div>
+        <div class="pg-sub">Bug tracker, risk register, and dependency log — severity-classified with resolution history</div>
+      </div>
+      <div class="pg-actions no-print">
+        <button class="btn btn-primary" onclick="openIssueModal()">+ Add Issue</button>
+      </div>
+    </div>
+    <div class="filter-bar no-print">
+      <span class="filter-lbl">Search:</span>
+      <input type="text" id="iss-search" class="fc" placeholder="Search issues…" style="width:180px">
+      <span class="filter-lbl">Status:</span>
+      <select id="iss-status-filter" class="fc" style="width:140px">
+        <option value="">All</option>
+        <option>Open</option>
+        <option>Investigating</option>
+        <option>Blocked</option>
+        <option>Resolved</option>
+        <option>Closed</option>
+      </select>
+      <span class="filter-lbl">Severity:</span>
+      <select id="iss-sev-filter" class="fc" style="width:120px">
+        <option value="">All</option>
+        <option>Critical</option>
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+      </select>
+    </div>
+    <div id="issues-content"></div>
+  </div>
+
+  <!-- ── PAGE: REPORTS & EXPORT ──────────────────────────── -->
+  <div class="page" id="page-reports">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Reports &amp; Export</div>
+        <div class="pg-sub">Generate a formal progress report for faculty review — only recorded data is included</div>
+      </div>
+      <div class="pg-actions no-print">
+        <button class="btn btn-secondary" onclick="printReport()">🖨 Print / Save PDF</button>
+        <button class="btn btn-primary" onclick="generateReport()">▶ Generate Report</button>
+      </div>
+    </div>
+
+    <div class="grid-2 mb-5 no-print">
+      <!-- Options panel -->
+      <div class="card">
+        <div class="card-header"><div class="card-title">Report Options</div></div>
+        <div class="card-body">
+          <div class="fg">
+            <label class="lbl">Reporting Period — From</label>
+            <input type="date" id="rpt-from" class="fc">
+          </div>
+          <div class="fg">
+            <label class="lbl">Reporting Period — To</label>
+            <input type="date" id="rpt-to" class="fc">
+          </div>
+          <div class="fg">
+            <label class="lbl">Filter by Member</label>
+            <select id="rpt-member" class="fc"><option value="">All members</option></select>
+          </div>
+          <div class="fg">
+            <label class="lbl">Sections to Include</label>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
+              <label style="display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);cursor:pointer"><input type="checkbox" class="rpt-sec-cb" value="overview" checked> Project Overview</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);cursor:pointer"><input type="checkbox" class="rpt-sec-cb" value="team" checked> Team Members &amp; Responsibilities</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);cursor:pointer"><input type="checkbox" class="rpt-sec-cb" value="meetings" checked> Meeting Minutes</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);cursor:pointer"><input type="checkbox" class="rpt-sec-cb" value="directives" checked> Faculty Directives &amp; Compliance</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);cursor:pointer"><input type="checkbox" class="rpt-sec-cb" value="changes" checked> Technical Development History</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);cursor:pointer"><input type="checkbox" class="rpt-sec-cb" value="issues" checked> Issues &amp; Resolutions</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);cursor:pointer"><input type="checkbox" class="rpt-sec-cb" value="testing" checked> Testing &amp; Evaluation</label>
+              <label style="display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);cursor:pointer"><input type="checkbox" class="rpt-sec-cb" value="milestones" checked> Milestones &amp; Pending Work</label>
+            </div>
+          </div>
+          <button class="btn btn-primary w-full mt-2" onclick="generateReport()">▶ Generate Report</button>
+        </div>
+      </div>
+
+      <!-- How to export -->
+      <div class="card">
+        <div class="card-header"><div class="card-title">How to Save as PDF</div></div>
+        <div class="card-body">
+          <div class="t-sm mb-4" style="line-height:1.8">
+            <p class="mb-3"><strong>Step 1</strong> — Set report options and click <em>Generate Report</em>.</p>
+            <p class="mb-3"><strong>Step 2</strong> — Review the preview below for accuracy.</p>
+            <p class="mb-3"><strong>Step 3</strong> — Click <em>Print / Save PDF</em> above.</p>
+            <p class="mb-3"><strong>Step 4</strong> — In the print dialog, select <strong>Save as PDF</strong> as the destination. Set margins to <em>Normal</em> and enable <em>Background graphics</em>.</p>
+          </div>
+          <div class="callout warn"><strong>Accuracy Notice</strong>The report reflects only what has been recorded in this logbook. Sections without data are shown as "Not recorded" rather than fabricated. Verify all figures before formal submission.</div>
+          <div class="divider"></div>
+          <div class="t-semi mb-2">Data Backup &amp; Restore</div>
+          <div class="flex gap-2 flex-wrap">
+            <button class="btn btn-secondary" onclick="exportData()">⬇ Export JSON</button>
+            <button class="btn btn-secondary" onclick="importData()">⬆ Import JSON</button>
+          </div>
+          <div class="t-xs t-muted mt-2">Export creates a full backup. Import overwrites current data — export first.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report preview -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Report Preview</div>
+        <div id="rpt-status" class="t-xs t-muted">Configure options and click Generate.</div>
+      </div>
+      <div class="card-body" style="min-height:200px">
+        <div id="rpt-preview"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAGE: PROJECT CONFIGURATION ────────────────────── -->
+  <div class="page" id="page-config">
+    <div class="pg-header">
+      <div>
+        <div class="pg-title">Project Configuration</div>
+        <div class="pg-sub">Project metadata, data management, and audit log</div>
+      </div>
+    </div>
+
+    <div class="grid-2 mb-5">
+      <!-- Project info form -->
+      <div class="card">
+        <div class="card-header"><div class="card-title">Project Information</div></div>
+        <div class="card-body">
+          <div class="fg">
+            <label class="lbl">Project Name</label>
+            <input id="cfg-projectName" class="fc" placeholder="Official project title">
+          </div>
+          <div class="fg-row">
+            <div class="fg">
+              <label class="lbl">Project Code / ID</label>
+              <input id="cfg-projectCode" class="fc">
+            </div>
+            <div class="fg">
+              <label class="lbl">Current Phase</label>
+              <input id="cfg-currentPhase" class="fc" placeholder="e.g. Development Phase 2">
+            </div>
+          </div>
+          <div class="fg">
+            <label class="lbl">Project Objective</label>
+            <textarea id="cfg-objective" class="fc" rows="2" placeholder="Concise statement of what the project aims to achieve"></textarea>
+          </div>
+          <div class="fg">
+            <label class="lbl">Scope</label>
+            <textarea id="cfg-scope" class="fc" rows="2"></textarea>
+          </div>
+          <div class="fg-row">
+            <div class="fg">
+              <label class="lbl">Institution</label>
+              <input id="cfg-institution" class="fc">
+            </div>
+            <div class="fg">
+              <label class="lbl">Department</label>
+              <input id="cfg-department" class="fc">
+            </div>
+          </div>
+          <div class="fg-row">
+            <div class="fg">
+              <label class="lbl">Faculty Guide / Supervisor</label>
+              <input id="cfg-faculty" class="fc">
+            </div>
+            <div class="fg">
+              <label class="lbl">Faculty Email</label>
+              <input id="cfg-facultyEmail" class="fc" type="email">
+            </div>
+          </div>
+          <div class="fg-row">
+            <div class="fg">
+              <label class="lbl">Project Start Date</label>
+              <input id="cfg-startDate" class="fc" type="date">
+            </div>
+            <div class="fg">
+              <label class="lbl">Reporting Contact</label>
+              <input id="cfg-reportingContact" class="fc">
+            </div>
+          </div>
+          <div class="fg">
+            <label class="lbl">Team Name</label>
+            <input id="cfg-teamName" class="fc">
+          </div>
+          <button class="btn btn-primary" onclick="saveConfig()">Save Configuration</button>
+        </div>
+      </div>
+
+      <!-- Data management -->
+      <div>
+        <div class="card mb-4">
+          <div class="card-header"><div class="card-title">Data Management</div></div>
+          <div class="card-body">
+            <div class="t-sm mb-3" style="color:var(--text-2)">All logbook data is stored in this browser's localStorage. Export a JSON backup regularly — data will be lost if browser storage is cleared.</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <button class="btn btn-secondary" onclick="exportData()">⬇ Export Full JSON Backup</button>
+              <button class="btn btn-secondary" onclick="importData()">⬆ Import JSON Backup</button>
+              <hr style="border:none;border-top:1px solid var(--border-lt)">
+              <div class="callout err"><strong>Danger Zone</strong>Clearing data is irreversible. Export a backup before proceeding.</div>
+              <button class="btn btn-danger" onclick="clearAllData()">✕ Clear All Logbook Data</button>
+            </div>
+            <div class="divider"></div>
+            <div class="t-xs t-muted" style="line-height:1.8">
+              <p>• Data lives in this browser on this device only.</p>
+              <p>• To share: export JSON, share file, teammates import it.</p>
+              <p>• For shared team access: move to a backend REST API (SQLite / PostgreSQL). The frontend is structured to support this.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">Audit Log</div><span class="t-xs t-muted">Last 50 actions</span></div>
+          <div class="card-body" style="max-height:300px;overflow-y:auto">
+            <div id="audit-log-content"><div class="t-sm t-muted t-italic">No audit entries yet.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /#main-content -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     MODALS
+══════════════════════════════════════════════════════════ -->
+
+<!-- ── Add / Edit Meeting ──────────────────────────────────── -->
+<div class="modal-overlay" id="meeting-modal" role="dialog" aria-modal="true" aria-labelledby="mtg-modal-title">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title" id="mtg-modal-title">Add Meeting</div>
+      <button class="modal-close" onclick="UI.closeModal('meeting-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="mtg-form" onsubmit="event.preventDefault()">
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Meeting No. <span class="req">*</span></label>
+            <input id="mtg-number" name="mtg-number" type="number" class="fc" required>
+            <div class="f-err">Required</div></div>
+          <div class="fg"><label class="lbl">Meeting ID <span class="req">*</span></label>
+            <input id="mtg-meetingId" name="mtg-meetingId" class="fc" required>
+            <div class="f-err">Required</div></div>
+        </div>
+        <div class="fg"><label class="lbl">Title / Label <span class="req">*</span></label>
+          <input id="mtg-title" name="mtg-title" class="fc" required placeholder="e.g. Initial Requirements Review">
+          <div class="f-err">Required</div></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Date <span class="req">*</span></label>
+            <input id="mtg-date" name="mtg-date" type="date" class="fc" required>
+            <div class="f-err">Required</div></div>
+          <div class="fg"><label class="lbl">Time</label>
+            <input id="mtg-time" name="mtg-time" type="time" class="fc"></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Duration</label>
+            <input id="mtg-duration" name="mtg-duration" class="fc" placeholder="e.g. 45 minutes"></div>
+          <div class="fg"><label class="lbl">Meeting Type</label>
+            <select id="mtg-type" name="mtg-type" class="fc">
+              <option>Regular Meeting</option>
+              <option>Faculty Review</option>
+              <option>Technical Discussion</option>
+              <option>Project Demonstration</option>
+              <option>Other</option>
+            </select></div>
+        </div>
+        <div class="fg"><label class="lbl">Attendees</label>
+          <input id="mtg-attendees" name="mtg-attendees" class="fc" placeholder="Names of those present"></div>
+        <div class="fg"><label class="lbl">Absent Members</label>
+          <input id="mtg-absent" name="mtg-absent" class="fc"></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Chair / Supervisor</label>
+            <input id="mtg-chair" name="mtg-chair" class="fc"></div>
+          <div class="fg"><label class="lbl">Minutes Prepared By</label>
+            <input id="mtg-minutesBy" name="mtg-minutesBy" class="fc"></div>
+        </div>
+        <div class="fg"><label class="lbl">Meeting Objective</label>
+          <textarea id="mtg-objective" name="mtg-objective" class="fc" rows="2"></textarea></div>
+        <div class="fg"><label class="lbl">Agenda Items</label>
+          <textarea id="mtg-agenda" name="mtg-agenda" class="fc" rows="2"></textarea></div>
+        <div class="fg"><label class="lbl">Record State</label>
+          <select id="mtg-state" name="mtg-state" class="fc">
+            <option value="Draft">Draft</option>
+            <option value="Reviewed">Reviewed</option>
+            <option value="Finalized">Finalized</option>
+          </select>
+          <div class="f-hint">Finalized records should not be silently edited — changes are logged in the audit trail.</div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('meeting-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveMeeting()">Save Meeting</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Meeting Sub-Item Modal ──────────────────────────────── -->
+<div class="modal-overlay" id="sub-item-modal" role="dialog" aria-modal="true" aria-labelledby="sub-modal-title">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title" id="sub-modal-title">Add Item</div>
+      <button class="modal-close" onclick="UI.closeModal('sub-item-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="sub-item-form" onsubmit="event.preventDefault()">
+        <div id="sub-form-body"></div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('sub-item-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveSubItem()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Detailed Meeting Discussion Entry Modal ──────────────── -->
+<div class="modal-overlay" id="discussion-modal" role="dialog" aria-modal="true" aria-labelledby="disc-modal-title">
+  <div class="modal modal-lg">
+    <div class="modal-hdr">
+      <div class="modal-title" id="disc-modal-title">Record Meeting Discussion Topic</div>
+      <button class="modal-close" onclick="UI.closeModal('discussion-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="disc-form" onsubmit="event.preventDefault()">
+        <input type="hidden" id="disc-meeting-id">
+        <input type="hidden" id="disc-edit-id">
+
+        <div class="fg-row">
+          <div class="fg" style="flex:2">
+            <label class="lbl">Discussion Topic / Title <span class="req">*</span></label>
+            <input id="disc-topic" class="fc" required placeholder="e.g. Database design and chunk storage structure">
+            <div class="f-err">Required</div>
+          </div>
+          <div class="fg" style="flex:1">
+            <label class="lbl">Approx. Discussion Time</label>
+            <input id="disc-time" class="fc" placeholder="e.g. 14:20 or 15m in">
+          </div>
+        </div>
+
+        <div class="fg">
+          <label class="lbl">Speaker / Contributor</label>
+          <input id="disc-speaker" class="fc" placeholder="e.g. Prof. Sharma / Riya Sharma / Team discussion">
+          <div class="f-hint">Do not invent attribution without reliable information. If open discussion, state 'Team discussion'.</div>
+        </div>
+
+        <div class="fg">
+          <label class="lbl">Detailed Discussion Notes <span class="req">*</span></label>
+          <textarea id="disc-notes" class="fc" rows="4" required placeholder="Record what was discussed, what was shown, questions raised, and technical alternatives considered..."></textarea>
+          <div class="f-hint">Do not limit to short summaries. Preserve important details of the actual discussion.</div>
+          <div class="f-err">Required</div>
+        </div>
+
+        <div class="fg-row">
+          <div class="fg">
+            <label class="lbl">Instructions / Suggestions by Faculty</label>
+            <textarea id="disc-faculty-instructions" class="fc" rows="2" placeholder="Specific guidance, critique, or changes requested by sir/ma'am"></textarea>
+          </div>
+          <div class="fg">
+            <label class="lbl">Decisions Made &amp; Technical Reasoning</label>
+            <textarea id="disc-decisions" class="fc" rows="2" placeholder="Agreed technical approach and why alternatives were rejected"></textarea>
+          </div>
+        </div>
+
+        <div class="fg">
+          <label class="lbl">Agreed Next Steps &amp; Follow-up Actions</label>
+          <textarea id="disc-follow-up" class="fc" rows="2" placeholder="Tasks assigned, verification needed, or items to demonstrate next meeting"></textarea>
+        </div>
+
+        <!-- Two-Way Traceability Links -->
+        <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:4px;padding:10px 12px;margin-top:10px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text-2);margin-bottom:8px">
+            🔗 Two-Way Traceability Links (Optional)
+          </div>
+          <div class="fg-row">
+            <div class="fg">
+              <label class="lbl">Related Faculty Directive</label>
+              <select id="disc-rel-directive" class="fc">
+                <option value="">— None —</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label class="lbl">Related Assigned Task</label>
+              <select id="disc-rel-task" class="fc">
+                <option value="">— None —</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label class="lbl">Related Technical Decision</label>
+              <select id="disc-rel-decision" class="fc">
+                <option value="">— None —</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('discussion-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveDiscussionEntry()">Save Discussion Entry</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Upload / Attach Meeting Media Modal ──────────────────── -->
+<div class="modal-overlay" id="meeting-attachment-modal" role="dialog" aria-modal="true" aria-labelledby="matt-modal-title">
+  <div class="modal modal-lg">
+    <div class="modal-hdr">
+      <div class="modal-title" id="matt-modal-title">Attach Media to Meeting Documentation</div>
+      <button class="modal-close" onclick="UI.closeModal('meeting-attachment-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="matt-form" onsubmit="event.preventDefault()">
+        <input type="hidden" id="matt-meeting-id">
+
+        <div class="evidence-dropzone mb-3" id="matt-dropzone" onclick="document.getElementById('matt-file-input').click()">
+          <input type="file" id="matt-file-input" accept="image/png,image/jpeg,image/jpg,image/webp,application/pdf" style="display:none" onchange="handleMeetingMediaFileSelect(this)">
+          <div style="font-size:28px;margin-bottom:6px">📁</div>
+          <div style="font-weight:600;font-size:13px;color:var(--text);margin-bottom:4px">
+            Select or drop screenshot, diagram, or meeting document
+          </div>
+          <div style="font-size:11px;color:var(--text-3)">
+            Supported formats: PNG, JPG, JPEG, WEBP, PDF (Max 15MB)
+          </div>
+        </div>
+
+        <div id="matt-selected-preview" style="display:none;margin-bottom:12px;padding:10px;background:var(--surface-2);border:1px solid var(--border);border-radius:4px;align-items:center;gap:12px">
+          <div id="matt-preview-thumb-wrap" style="width:50px;height:50px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:4px;border:1px solid var(--border);overflow:hidden"></div>
+          <div style="flex:1;min-width:0">
+            <div id="matt-selected-filename" style="font-weight:600;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>
+            <div id="matt-selected-size" style="font-size:10px;color:var(--text-3)"></div>
+          </div>
+          <button type="button" class="btn btn-ghost btn-xs" onclick="clearSelectedMeetingMediaFile()">✕ Remove</button>
+        </div>
+
+        <div class="fg">
+          <label class="lbl">Contextual Caption / Explanation <span class="req">*</span></label>
+          <input id="matt-caption" class="fc" required placeholder="e.g. Architecture diagram discussed during the meeting on hybrid search">
+          <div class="f-hint">Explain what is shown and how it relates to what faculty discussed or instructed.</div>
+          <div class="f-err">Required</div>
+        </div>
+
+        <div class="fg-row">
+          <div class="fg">
+            <label class="lbl">Attach Directly to Discussion Topic</label>
+            <select id="matt-discussion-id" class="fc">
+              <option value="">— General Meeting Attachment —</option>
+            </select>
+            <div class="f-hint">Attaches image directly beneath the selected discussion entry to preserve context.</div>
+          </div>
+          <div class="fg">
+            <label class="lbl">Uploader Name / Identity</label>
+            <input id="matt-uploader" class="fc" placeholder="e.g. Riya Sharma">
+          </div>
+        </div>
+
+        <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:4px;padding:10px 12px;margin-top:10px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text-2);margin-bottom:8px">
+            🔗 Optional Reference Links
+          </div>
+          <div class="fg-row">
+            <div class="fg">
+              <label class="lbl">Related Directive</label>
+              <select id="matt-rel-directive" class="fc"><option value="">— None —</option></select>
+            </div>
+            <div class="fg">
+              <label class="lbl">Related Task</label>
+              <select id="matt-rel-task" class="fc"><option value="">— None —</option></select>
+            </div>
+            <div class="fg">
+              <label class="lbl">Related Decision</label>
+              <select id="matt-rel-decision" class="fc"><option value="">— None —</option></select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('meeting-attachment-modal')">Cancel</button>
+      <button class="btn btn-primary" id="matt-submit-btn" onclick="submitMeetingMediaUpload()">Upload &amp; Attach</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Meeting Media Preview & Lightbox Modal ───────────────── -->
+<div class="modal-overlay" id="meeting-media-modal" role="dialog" aria-modal="true" aria-labelledby="mmedia-modal-title">
+  <div class="modal modal-lg-media">
+    <div class="modal-hdr" style="padding:12px 18px">
+      <div style="flex:1;min-width:0">
+        <div class="modal-title" id="mmedia-modal-title" style="font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Attachment Preview</div>
+        <div style="font-size:11px;color:var(--text-3);margin-top:2px" id="mmedia-counter">1 of 1</div>
+      </div>
+      <div class="flex gap-2" style="align-items:center">
+        <button class="btn btn-secondary btn-xs" id="mmedia-open-btn" onclick="openMeetingMediaInNewTab()">↗ Open File</button>
+        <button class="modal-close" onclick="UI.closeModal('meeting-media-modal')" aria-label="Close">×</button>
+      </div>
+    </div>
+    <div class="modal-body" style="padding:16px 18px">
+      <div class="lightbox-stage" id="mmedia-stage">
+        <button class="lightbox-nav-btn prev" id="mmedia-prev-btn" onclick="navMeetingMedia(-1)" aria-label="Previous">❮</button>
+        <div id="mmedia-media-container" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"></div>
+        <button class="lightbox-nav-btn next" id="mmedia-next-btn" onclick="navMeetingMedia(1)" aria-label="Next">❯</button>
+      </div>
+
+      <div style="margin-top:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:12px 16px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px" id="mmedia-caption-text">—</div>
+            <div style="font-size:11px;color:var(--text-2);line-height:1.4" id="mmedia-context-info"></div>
+          </div>
+          <div class="flex gap-1 no-print">
+            <button class="btn btn-ghost btn-xs" onclick="editMeetingAttachmentCaption()">✏ Edit Caption</button>
+            <button class="btn btn-ghost btn-xs btn-danger" onclick="deleteMeetingAttachment()">🗑 Remove</button>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:16px;margin-top:10px;padding-top:8px;border-top:1px solid var(--border-lt);font-size:11px;color:var(--text-3);flex-wrap:wrap">
+          <div>File: <strong id="mmedia-filename" style="color:var(--text)">—</strong></div>
+          <div>Size: <strong id="mmedia-filesize" style="color:var(--text)">—</strong></div>
+          <div>Uploaded by: <strong id="mmedia-uploader" style="color:var(--text)">—</strong></div>
+          <div>Date: <strong id="mmedia-date" style="color:var(--text)">—</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Meeting Documentation Formal Report Modal ────────────── -->
+<div class="modal-overlay" id="meeting-report-modal" role="dialog" aria-modal="true" aria-labelledby="mrpt-modal-title">
+  <div class="modal modal-lg" style="max-width:960px;width:95vw">
+    <div class="modal-hdr">
+      <div>
+        <div class="modal-title" id="mrpt-modal-title">Formal Meeting Report &amp; Documentation Export</div>
+        <div style="font-size:11px;color:var(--text-3)">Print-ready report preserving notes, faculty directives, decisions, and contextual visual evidence</div>
+      </div>
+      <button class="modal-close" onclick="UI.closeModal('meeting-report-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" style="padding:16px 20px;max-height:80vh;overflow-y:auto">
+      <div class="filter-bar no-print mb-3" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <span class="filter-lbl">Scope:</span>
+        <select id="mrpt-scope-select" class="fc" style="width:240px" onchange="generateMeetingReportView()">
+          <option value="all">All Project Meetings (Full Dossier)</option>
+        </select>
+        <span class="filter-lbl">From:</span>
+        <input type="date" id="mrpt-date-from" class="fc" style="width:140px" onchange="generateMeetingReportView()">
+        <span class="filter-lbl">To:</span>
+        <input type="date" id="mrpt-date-to" class="fc" style="width:140px" onchange="generateMeetingReportView()">
+        <button class="btn btn-primary btn-sm ml-auto" onclick="printMeetingReport()">🖨 Print / Export PDF</button>
+      </div>
+
+      <div id="mrpt-preview-container" class="meeting-report-print" style="background:#fff;border:1px solid var(--border);border-radius:4px;padding:24px">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+    <div class="modal-ftr no-print">
+      <button class="btn btn-secondary" onclick="UI.closeModal('meeting-report-modal')">Close</button>
+      <button class="btn btn-primary" onclick="printMeetingReport()">🖨 Print / Export PDF</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Add / Edit Directive ───────────────────────────────── -->
+<div class="modal-overlay" id="directive-modal" role="dialog" aria-modal="true" aria-labelledby="dir-modal-title">
+  <div class="modal modal-lg">
+    <div class="modal-hdr">
+      <div class="modal-title" id="dir-modal-title">Add Faculty Directive</div>
+      <button class="modal-close" onclick="UI.closeModal('directive-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="dir-form" onsubmit="event.preventDefault()">
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Directive ID <span class="req">*</span></label>
+            <input id="dir-directiveId" class="fc" required>
+            <div class="f-err">Required</div></div>
+          <div class="fg"><label class="lbl">Date Received</label>
+            <input id="dir-dateReceived" type="date" class="fc"></div>
+        </div>
+        <div class="fg"><label class="lbl">Original Instruction / Faithful Summary <span class="req">*</span></label>
+          <textarea id="dir-instruction" class="fc" rows="3" required placeholder="Record the instruction exactly as given, or a faithful summary preserving the original meaning."></textarea>
+          <div class="f-hint">Do not paraphrase in a way that changes the meaning. Record what was actually asked.</div>
+          <div class="f-err">Required</div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Category</label>
+            <select id="dir-category" class="fc">
+              <option value="">— Select —</option>
+              <option>Implementation</option>
+              <option>Research</option>
+              <option>Documentation</option>
+              <option>Testing</option>
+              <option>Presentation</option>
+              <option>Architecture</option>
+              <option>Other</option>
+            </select></div>
+          <div class="fg"><label class="lbl">Related Meeting</label>
+            <select id="dir-meetingId" class="fc"></select></div>
+        </div>
+        <div class="fg"><label class="lbl">Assigned To (person or team)</label>
+          <input id="dir-assignedTo" class="fc" placeholder="Name or 'Whole Team'"></div>
+        <div class="fg"><label class="lbl">Expected Outcome</label>
+          <textarea id="dir-expectedOutcome" class="fc" rows="2" placeholder="What should be produced or demonstrated?"></textarea></div>
+        <div class="fg"><label class="lbl">Acceptance Criteria</label>
+          <textarea id="dir-acceptanceCriteria" class="fc" rows="2" placeholder="How will completion be verified?"></textarea></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Deadline</label>
+            <input id="dir-deadline" type="date" class="fc"></div>
+          <div class="fg"><label class="lbl">Priority</label>
+            <select id="dir-priority" class="fc">
+              <option>Critical</option><option>High</option>
+              <option selected>Medium</option><option>Low</option>
+            </select></div>
+        </div>
+        <div class="fg"><label class="lbl">Status</label>
+          <select id="dir-status" class="fc">
+            <option>Not Started</option><option>In Progress</option>
+            <option>Blocked</option><option>Submitted for Review</option>
+            <option>Changes Requested</option><option>Completed and Verified</option>
+          </select></div>
+        <div class="fg"><label class="lbl">Verification Method</label>
+          <input id="dir-verificationMethod" class="fc" placeholder="e.g. Code review, Test result, Faculty confirmation, Demonstration">
+          <div class="f-hint">A task must not be marked "Completed and Verified" without a documented verification method.</div>
+        </div>
+        <div class="fg"><label class="lbl">Verification Evidence</label>
+          <textarea id="dir-verificationEvidence" class="fc" rows="2" placeholder="Describe the evidence supporting completion"></textarea></div>
+        <div class="fg"><label class="lbl">Evidence Reference (link, commit, file)</label>
+          <input id="dir-evidenceReference" class="fc" placeholder="e.g. https://github.com/… or commit abc123"></div>
+        <div class="fg"><label class="lbl">Faculty Feedback</label>
+          <textarea id="dir-facultyFeedback" class="fc" rows="2"></textarea></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Closure Date</label>
+            <input id="dir-closureDate" type="date" class="fc"></div>
+          <div class="fg"><label class="lbl">Follow-up Action</label>
+            <input id="dir-followUp" class="fc"></div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('directive-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveDirective()">Save Directive</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Traceability Modal ──────────────────────────────────── -->
+<div class="modal-overlay" id="trace-modal" role="dialog" aria-modal="true" aria-labelledby="trace-modal-title">
+  <div class="modal modal-lg">
+    <div class="modal-hdr">
+      <div class="modal-title" id="trace-modal-title">Traceability Chain</div>
+      <button class="modal-close" onclick="UI.closeModal('trace-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" id="trace-modal-body"></div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('trace-modal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Add / Edit Member ──────────────────────────────────── -->
+<div class="modal-overlay" id="member-modal" role="dialog" aria-modal="true" aria-labelledby="member-modal-title">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title" id="member-modal-title">Add Team Member</div>
+      <button class="modal-close" onclick="UI.closeModal('member-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="member-form" onsubmit="event.preventDefault()">
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Full Name <span class="req">*</span></label>
+            <input id="mbr-name" class="fc" required>
+            <div class="f-err">Required</div></div>
+          <div class="fg"><label class="lbl">Role</label>
+            <input id="mbr-role" class="fc" placeholder="e.g. Backend Developer"></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Student ID / Roll No.</label>
+            <input id="mbr-studentId" class="fc"></div>
+          <div class="fg"><label class="lbl">Email</label>
+            <input id="mbr-email" class="fc" type="email"></div>
+        </div>
+        <div class="fg"><label class="lbl">GitHub / GitLab Username</label>
+          <input id="mbr-github" class="fc"></div>
+        <div class="fg"><label class="lbl">Assigned Responsibilities</label>
+          <textarea id="mbr-responsibilities" class="fc" rows="2"></textarea></div>
+        <div class="fg"><label class="lbl">Components / Features Owned</label>
+          <textarea id="mbr-components" class="fc" rows="2"></textarea></div>
+        <div class="fg"><label class="lbl">Notes</label>
+          <textarea id="mbr-notes" class="fc" rows="2"></textarea></div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('member-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveMember()">Save Member</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Add / Edit Task ────────────────────────────────────── -->
+<div class="modal-overlay" id="task-modal" role="dialog" aria-modal="true" aria-labelledby="task-modal-title">
+  <div class="modal modal-sm">
+    <div class="modal-hdr">
+      <div class="modal-title" id="task-modal-title">Add Task</div>
+      <button class="modal-close" onclick="UI.closeModal('task-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="task-form" onsubmit="event.preventDefault()">
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Task ID</label>
+            <input id="task-taskId" class="fc" placeholder="TSK-001"></div>
+          <div class="fg"><label class="lbl">Assigned To</label>
+            <select id="task-assignedTo" class="fc"></select></div>
+        </div>
+        <div class="fg"><label class="lbl">Task Title <span class="req">*</span></label>
+          <input id="task-title" class="fc" required>
+          <div class="f-err">Required</div></div>
+        <div class="fg"><label class="lbl">Linked Directive (optional)</label>
+          <select id="task-directiveId" class="fc"></select></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Category</label>
+            <select id="task-category" class="fc">
+              <option value="">— Select —</option>
+              <option>Backend</option><option>Frontend</option>
+              <option>Database</option><option>Search Algorithm</option>
+              <option>Research</option><option>Documentation</option>
+              <option>Testing</option><option>DevOps</option><option>Other</option>
+            </select></div>
+          <div class="fg"><label class="lbl">Priority</label>
+            <select id="task-priority" class="fc">
+              <option>Critical</option><option>High</option>
+              <option selected>Medium</option><option>Low</option>
+            </select></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Deadline</label>
+            <input id="task-deadline" type="date" class="fc"></div>
+          <div class="fg"><label class="lbl">Status</label>
+            <select id="task-status" class="fc">
+              <option>Not Started</option>
+              <option>In Progress</option>
+              <option>Submitted for Review</option>
+              <option>Verified</option>
+              <option>Changes Requested</option>
+              <option>Blocked</option>
+              <option>Completed</option>
+            </select></div>
+        </div>
+        <div class="fg"><label class="lbl">Evidence Link (PR / commit / file)</label>
+          <input id="task-evidence" class="fc" placeholder="https://github.com/…"></div>
+        <div class="fg" id="task-modal-proof-sec">
+          <label class="lbl">Photo &amp; Screenshot Proof</label>
+          <div id="task-modal-evidence-preview" style="padding:8px 10px;background:var(--surface-2);border:1px solid var(--border);border-radius:4px">
+            <span class="t-xs t-muted">Save the task to attach screenshots or upload evidence directly.</span>
+          </div>
+        </div>
+        <div class="fg"><label class="lbl">Notes</label>
+          <textarea id="task-notes" class="fc" rows="2"></textarea></div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('task-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveTask()">Save Task</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Evidence & Verification Modal ─────────────────────── -->
+<div class="modal-overlay" id="evidence-modal" role="dialog" aria-modal="true" aria-labelledby="evidence-modal-title">
+  <div class="modal modal-lg-evidence">
+    <div class="modal-hdr" style="padding:14px 18px;border-bottom:1px solid var(--border)">
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span class="id-tag" id="ev-modal-task-id">TSK-001</span>
+          <div class="modal-title" id="evidence-modal-title" style="font-size:15px">Task Evidence &amp; Verification</div>
+          <span id="ev-modal-status-badge"></span>
+        </div>
+        <div style="font-size:11px;color:var(--text-3);margin-top:3px" id="ev-modal-task-meta">
+          Assigned to: <strong id="ev-modal-member-name">—</strong>
+        </div>
+      </div>
+      <button class="modal-close" onclick="UI.closeModal('evidence-modal')" aria-label="Close">×</button>
+    </div>
+
+    <div class="modal-body" style="padding:16px 18px;max-height:80vh;overflow-y:auto">
+      <!-- Tabs: Gallery/Carousel & Upload New & Faculty Review -->
+      <div class="evidence-tabs">
+        <button class="evidence-tab-btn active" id="ev-tab-gallery-btn" onclick="switchEvidenceTab('gallery')">
+          🖼 Proof Gallery (<span id="ev-gallery-count">0</span>)
+        </button>
+        <button class="evidence-tab-btn" id="ev-tab-upload-btn" onclick="switchEvidenceTab('upload')">
+          ➕ Attach New Proof
+        </button>
+        <button class="evidence-tab-btn" id="ev-tab-review-btn" onclick="switchEvidenceTab('review')">
+          🎓 Faculty Verification &amp; Review
+        </button>
+      </div>
+
+      <!-- Tab 1: Gallery & Carousel View -->
+      <div id="ev-tab-gallery">
+        <div id="ev-gallery-content">
+          <!-- Populated dynamically: Preview stage with Carousel, Thumbnails strip, Caption & Metadata -->
+        </div>
+      </div>
+
+      <!-- Tab 2: Upload New Attachment -->
+      <div id="ev-tab-upload" style="display:none">
+        <form id="ev-upload-form" onsubmit="handleEvidenceUpload(event)">
+          <div class="evidence-dropzone mb-3" id="ev-dropzone" onclick="document.getElementById('ev-file-input').click()">
+            <input type="file" id="ev-file-input" accept="image/png,image/jpeg,image/jpg" style="display:none" onchange="handleEvidenceFileSelect(this)">
+            <div style="font-size:28px;margin-bottom:6px">📸</div>
+            <div style="font-weight:600;font-size:13px;color:var(--text);margin-bottom:4px">
+              Select or drop screenshot / photo proof
+            </div>
+            <div style="font-size:11px;color:var(--text-3)">
+              Supported formats: PNG, JPG, JPEG (Max 10MB per image)
+            </div>
+          </div>
+
+          <!-- File preview if selected -->
+          <div id="ev-selected-preview" style="display:none;margin-bottom:12px;padding:10px;background:var(--surface-2);border:1px solid var(--border);border-radius:4px;align-items:center;gap:12px">
+            <img id="ev-selected-thumb" style="width:50px;height:50px;object-fit:cover;border-radius:4px;border:1px solid var(--border)">
+            <div style="flex:1">
+              <div id="ev-selected-filename" style="font-weight:600;font-size:12px"></div>
+              <div id="ev-selected-size" style="font-size:10px;color:var(--text-3)"></div>
+            </div>
+            <button type="button" class="btn btn-ghost btn-xs" onclick="clearSelectedEvidenceFile()">✕ Remove</button>
+          </div>
+
+          <div class="fg mb-3">
+            <label class="lbl">Caption / Explanation of Proof</label>
+            <input type="text" id="ev-caption" class="fc" placeholder="e.g. Screenshot showing search latency reduced to 42ms after inverted index caching">
+            <div class="t-xs t-muted" style="margin-top:3px">Short explanation of what this image proves regarding the completed task.</div>
+          </div>
+
+          <div class="fg-row mb-3">
+            <div class="fg">
+              <label class="lbl">Uploader Name / Identity</label>
+              <input type="text" id="ev-uploader" class="fc" placeholder="e.g. Riya Sharma">
+            </div>
+            <div class="fg">
+              <label class="lbl">Task Status Update</label>
+              <select id="ev-upload-status" class="fc">
+                <option value="keep">Keep current task status</option>
+                <option value="Submitted for Review">Submit for Review (Mark task as Submitted for Review)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display:flex;justify-content:flex-end;gap:8px">
+            <button type="button" class="btn btn-secondary" onclick="switchEvidenceTab('gallery')">Cancel</button>
+            <button type="submit" id="ev-upload-submit-btn" class="btn btn-primary">
+              <span id="ev-upload-btn-text">Upload Evidence</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tab 3: Faculty Verification & Review Workflow -->
+      <div id="ev-tab-review" style="display:none">
+        <div id="ev-review-content">
+          <!-- Dynamic faculty review card with history and review action controls -->
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-ftr" style="padding:10px 18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+      <div style="font-size:11px;color:var(--text-3)" id="ev-modal-ftr-note">
+        Stored in persistent storage with server-side validation.
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="UI.closeModal('evidence-modal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Add Deliverable ────────────────────────────────────── -->
+<div class="modal-overlay" id="deliverable-modal" role="dialog" aria-modal="true">
+  <div class="modal modal-sm">
+    <div class="modal-hdr">
+      <div class="modal-title">Add Deliverable</div>
+      <button class="modal-close" onclick="UI.closeModal('deliverable-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="deliv-form" onsubmit="event.preventDefault()">
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Deliverable ID</label>
+            <input id="deliv-deliverableId" class="fc"></div>
+          <div class="fg"><label class="lbl">Type</label>
+            <select id="deliv-type" class="fc">
+              <option>Code / PR</option><option>Document</option>
+              <option>Presentation</option><option>Demonstration</option>
+              <option>Report</option><option>Diagram</option><option>Other</option>
+            </select></div>
+        </div>
+        <div class="fg"><label class="lbl">Title <span class="req">*</span></label>
+          <input id="deliv-title" class="fc" required>
+          <div class="f-err">Required</div></div>
+        <div class="fg"><label class="lbl">Date Submitted</label>
+          <input id="deliv-date" type="date" class="fc"></div>
+        <div class="fg"><label class="lbl">Link (GitHub / Drive / etc.)</label>
+          <input id="deliv-link" class="fc" placeholder="https://…"></div>
+        <div class="fg"><label class="lbl">Notes</label>
+          <textarea id="deliv-notes" class="fc" rows="2"></textarea></div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('deliverable-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveDeliverable()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Log Contribution ───────────────────────────────────── -->
+<div class="modal-overlay" id="contrib-modal" role="dialog" aria-modal="true">
+  <div class="modal modal-sm">
+    <div class="modal-hdr">
+      <div class="modal-title">Log Contribution</div>
+      <button class="modal-close" onclick="UI.closeModal('contrib-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="contrib-form" onsubmit="event.preventDefault()">
+        <div class="fg"><label class="lbl">Date <span class="req">*</span></label>
+          <input id="contrib-date" type="date" class="fc" required>
+          <div class="f-err">Required</div></div>
+        <div class="fg"><label class="lbl">Description <span class="req">*</span></label>
+          <textarea id="contrib-description" class="fc" rows="3" required placeholder="Describe the contribution precisely. Only record what is supported by evidence."></textarea>
+          <div class="f-err">Required</div></div>
+        <div class="fg"><label class="lbl">Related Meeting</label>
+          <select id="contrib-meetingId" class="fc"></select></div>
+        <div class="fg"><label class="lbl">Contribution Tier</label>
+          <select id="contrib-tier" class="fc">
+            <option value="Assigned">Assigned — work assigned to this member</option>
+            <option value="Self-Reported">Self-Reported — member reports completion</option>
+            <option value="Demonstrated">Demonstrated — shown in meeting or review</option>
+            <option value="Verified">Verified — reviewed/tested/confirmed by another party</option>
+          </select>
+          <div class="f-hint">Select the highest tier supported by available evidence.</div>
+        </div>
+        <div class="fg"><label class="lbl">Evidence Reference</label>
+          <input id="contrib-evidence" class="fc" placeholder="Link, commit, document, or meeting reference"></div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('contrib-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveContrib()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Add / Edit Technical Change ───────────────────────── -->
+<div class="modal-overlay" id="change-modal" role="dialog" aria-modal="true" aria-labelledby="change-modal-title">
+  <div class="modal modal-lg">
+    <div class="modal-hdr">
+      <div class="modal-title" id="change-modal-title">Record Technical Change</div>
+      <button class="modal-close" onclick="UI.closeModal('change-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="change-form" onsubmit="event.preventDefault()">
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Change ID <span class="req">*</span></label>
+            <input id="chg-changeId" class="fc" required>
+            <div class="f-err">Required</div></div>
+          <div class="fg"><label class="lbl">Date</label>
+            <input id="chg-date" type="date" class="fc"></div>
+        </div>
+        <div class="fg"><label class="lbl">Change Title <span class="req">*</span></label>
+          <input id="chg-title" class="fc" required>
+          <div class="f-err">Required</div></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Subsystem <span class="req">*</span></label>
+            <select id="chg-subsystem" class="fc" required>
+              <option value="">— Select subsystem —</option>
+              <option>Document Processing</option>
+              <option>Database</option>
+              <option>Search &amp; Retrieval</option>
+              <option>Frontend</option>
+              <option>Backend</option>
+              <option>Other</option>
+            </select>
+            <div class="f-err">Required</div></div>
+          <div class="fg"><label class="lbl">Status</label>
+            <select id="chg-status" class="fc">
+              <option>Planned</option><option>In Progress</option>
+              <option>Completed</option><option>Reverted</option>
+            </select></div>
+        </div>
+        <div class="fg"><label class="lbl">Previous Behaviour / State</label>
+          <textarea id="chg-prevBehaviour" class="fc" rows="2" placeholder="How did the system behave before? (blank if new addition)"></textarea></div>
+        <div class="fg"><label class="lbl">New Behaviour / What Changed <span class="req">*</span></label>
+          <textarea id="chg-newBehaviour" class="fc" rows="2" required placeholder="What does the system do now?"></textarea>
+          <div class="f-err">Required</div></div>
+        <div class="fg"><label class="lbl">Reason for Change</label>
+          <textarea id="chg-reason" class="fc" rows="2"></textarea></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Implementing Member</label>
+            <input id="chg-implementedBy" class="fc"></div>
+          <div class="fg"><label class="lbl">Related File / Commit / PR</label>
+            <input id="chg-commit" class="fc" placeholder="e.g. abc1234 or /src/search.py"></div>
+        </div>
+        <div class="fg"><label class="lbl">Testing Performed</label>
+          <input id="chg-testing" class="fc" placeholder="e.g. Manual test, unit tests in test_search.py"></div>
+        <div class="fg"><label class="lbl">Linked Directive (optional)</label>
+          <select id="chg-directiveId" class="fc"></select></div>
+        <div class="fg" style="display:flex;align-items:center;gap:8px;padding-top:4px">
+          <input type="checkbox" id="chg-isPlanned" style="width:14px;height:14px">
+          <label for="chg-isPlanned" class="t-sm" style="cursor:pointer">
+            Mark as <strong>Planned</strong> — not yet implemented. Will display a warning label.
+          </label>
+        </div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('change-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveChange()">Save Change</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Add / Edit Technical Decision ─────────────────────── -->
+<div class="modal-overlay" id="decision-modal" role="dialog" aria-modal="true" aria-labelledby="dec-modal-title">
+  <div class="modal modal-lg">
+    <div class="modal-hdr">
+      <div class="modal-title" id="dec-modal-title">Add Technical Decision</div>
+      <button class="modal-close" onclick="UI.closeModal('decision-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="decision-form" onsubmit="event.preventDefault()">
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Decision ID <span class="req">*</span></label>
+            <input id="dec-decisionId" class="fc" required>
+            <div class="f-err">Required</div></div>
+          <div class="fg"><label class="lbl">Date</label>
+            <input id="dec-date" type="date" class="fc"></div>
+        </div>
+        <div class="fg"><label class="lbl">Research Question / Problem <span class="req">*</span></label>
+          <input id="dec-question" class="fc" required placeholder="e.g. Which vector database should we use?">
+          <div class="f-err">Required</div></div>
+        <div class="fg"><label class="lbl">Problem Statement &amp; Technical Context</label>
+          <textarea id="dec-problemStatement" class="fc" rows="2"></textarea></div>
+        <div class="fg"><label class="lbl">Options Evaluated</label>
+          <textarea id="dec-options" class="fc" rows="2" placeholder="List all alternatives considered"></textarea></div>
+        <div class="fg"><label class="lbl">Evidence &amp; Sources</label>
+          <textarea id="dec-sources" class="fc" rows="2" placeholder="Papers, docs, benchmarks consulted"></textarea></div>
+        <div class="fg"><label class="lbl">Key Findings</label>
+          <textarea id="dec-findings" class="fc" rows="2"></textarea></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Advantages of Chosen Approach</label>
+            <textarea id="dec-advantages" class="fc" rows="2"></textarea></div>
+          <div class="fg"><label class="lbl">Limitations / Trade-offs</label>
+            <textarea id="dec-limitations" class="fc" rows="2"></textarea></div>
+        </div>
+        <div class="fg"><label class="lbl">Decision Taken</label>
+          <input id="dec-decision" class="fc" placeholder="What did the team decide?"></div>
+        <div class="fg"><label class="lbl">Reasoning</label>
+          <textarea id="dec-reasoning" class="fc" rows="2"></textarea></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Approval Status</label>
+            <select id="dec-status" class="fc">
+              <option>Under Review</option><option>Approved</option>
+              <option>Rejected</option><option>Deferred</option><option>Implemented</option>
+            </select></div>
+          <div class="fg"><label class="lbl">Implementation Status</label>
+            <select id="dec-implementationStatus" class="fc">
+              <option>Planned</option><option>In Progress</option>
+              <option>Completed</option><option>Abandoned</option>
+            </select></div>
+        </div>
+        <div class="fg"><label class="lbl">Consequences &amp; Follow-up Work</label>
+          <input id="dec-consequences" class="fc"></div>
+        <div class="fg"><label class="lbl">Follow-up Investigation Required</label>
+          <input id="dec-followUp" class="fc"></div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('decision-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveDecision()">Save Decision</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Add / Edit Test Record ─────────────────────────────── -->
+<div class="modal-overlay" id="test-modal" role="dialog" aria-modal="true" aria-labelledby="test-modal-title">
+  <div class="modal modal-lg">
+    <div class="modal-hdr">
+      <div class="modal-title" id="test-modal-title">Add Test Record</div>
+      <button class="modal-close" onclick="UI.closeModal('test-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="test-form" onsubmit="event.preventDefault()">
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Test ID</label>
+            <input id="test-testId" class="fc" placeholder="TST-001"></div>
+          <div class="fg"><label class="lbl">Test Date <span class="req">*</span></label>
+            <input id="test-testDate" type="date" class="fc" required>
+            <div class="f-err">Required</div></div>
+        </div>
+        <div class="fg"><label class="lbl">Test Environment</label>
+          <input id="test-environment" class="fc" placeholder="e.g. Local · Python 3.11 · 16GB RAM"></div>
+        <div class="fg"><label class="lbl">Dataset / Documents Used</label>
+          <input id="test-dataset" class="fc" placeholder="e.g. 50 PDF lecture notes, CS curriculum docs"></div>
+        <div class="fg"><label class="lbl">Test Queries</label>
+          <textarea id="test-queries" class="fc" rows="2" placeholder="List queries used in this test session"></textarea></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Expected Results</label>
+            <textarea id="test-expected" class="fc" rows="2"></textarea></div>
+          <div class="fg"><label class="lbl">Actual Retrieved Results</label>
+            <textarea id="test-actual" class="fc" rows="2"></textarea></div>
+        </div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Relevance Judgments</label>
+            <textarea id="test-relevance" class="fc" rows="2" placeholder="Relevant / partially / not relevant per result"></textarea></div>
+          <div class="fg"><label class="lbl">Average Search Latency (ms)</label>
+            <input id="test-latency" class="fc" type="number" placeholder="e.g. 240"></div>
+        </div>
+        <div class="fg-row" style="grid-template-columns:1fr 1fr 1fr 1fr">
+          <div class="fg"><label class="lbl">Precision@K</label>
+            <input id="test-precisionK" class="fc" placeholder="0.00–1.00"></div>
+          <div class="fg"><label class="lbl">Recall@K</label>
+            <input id="test-recallK" class="fc" placeholder="0.00–1.00"></div>
+          <div class="fg"><label class="lbl">MRR</label>
+            <input id="test-mrr" class="fc" placeholder="0.00–1.00"></div>
+          <div class="fg"><label class="lbl">NDCG</label>
+            <input id="test-ndcg" class="fc" placeholder="0.00–1.00"></div>
+        </div>
+        <div class="fg"><label class="lbl">Bugs Discovered</label>
+          <textarea id="test-bugs" class="fc" rows="2"></textarea></div>
+        <div class="fg"><label class="lbl">Fixes Applied</label>
+          <textarea id="test-fixes" class="fc" rows="2"></textarea></div>
+        <div class="fg"><label class="lbl">Before / After Comparison</label>
+          <textarea id="test-comparison" class="fc" rows="3" placeholder="How did results change vs. the previous test session?"></textarea></div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('test-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveTest()">Save Test Record</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Add / Edit Issue ────────────────────────────────────── -->
+<div class="modal-overlay" id="issue-modal" role="dialog" aria-modal="true" aria-labelledby="issue-modal-title">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title" id="issue-modal-title">Add Issue</div>
+      <button class="modal-close" onclick="UI.closeModal('issue-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="issue-form" onsubmit="event.preventDefault()">
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Issue ID <span class="req">*</span></label>
+            <input id="iss-issueId" class="fc" required>
+            <div class="f-err">Required</div></div>
+          <div class="fg"><label class="lbl">Date Identified</label>
+            <input id="iss-dateIdentified" type="date" class="fc"></div>
+        </div>
+        <div class="fg"><label class="lbl">Description <span class="req">*</span></label>
+          <textarea id="iss-description" class="fc" rows="2" required></textarea>
+          <div class="f-err">Required</div></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Severity</label>
+            <select id="iss-severity" class="fc">
+              <option>Critical</option><option>High</option>
+              <option selected>Medium</option><option>Low</option>
+            </select></div>
+          <div class="fg"><label class="lbl">Priority</label>
+            <select id="iss-priority" class="fc">
+              <option>Critical</option><option>High</option>
+              <option selected>Medium</option><option>Low</option>
+            </select></div>
+        </div>
+        <div class="fg"><label class="lbl">Assigned To</label>
+          <input id="iss-assignedTo" class="fc"></div>
+        <div class="fg"><label class="lbl">Root Cause (if known)</label>
+          <textarea id="iss-rootCause" class="fc" rows="2"></textarea></div>
+        <div class="fg"><label class="lbl">Resolution / Workaround</label>
+          <textarea id="iss-resolution" class="fc" rows="2"></textarea></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Status</label>
+            <select id="iss-status" class="fc">
+              <option>Open</option><option>Investigating</option>
+              <option>Blocked</option><option>Resolved</option><option>Closed</option>
+            </select></div>
+          <div class="fg"><label class="lbl">Related Task / Meeting</label>
+            <input id="iss-relatedTask" class="fc" placeholder="e.g. TSK-003, Meeting 2"></div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('issue-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveIssue()">Save Issue</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Add / Edit Milestone ───────────────────────────────── -->
+<div class="modal-overlay" id="milestone-modal" role="dialog" aria-modal="true" aria-labelledby="milestone-modal-title">
+  <div class="modal modal-sm">
+    <div class="modal-hdr">
+      <div class="modal-title" id="milestone-modal-title">Add Milestone</div>
+      <button class="modal-close" onclick="UI.closeModal('milestone-modal')" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form id="milestone-form" onsubmit="event.preventDefault()">
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Milestone ID</label>
+            <input id="ms-milestoneId" class="fc" placeholder="MLS-001"></div>
+          <div class="fg"><label class="lbl">Status</label>
+            <select id="ms-status" class="fc">
+              <option>Planned</option><option>In Progress</option>
+              <option>Completed</option><option>Delayed</option><option>Cancelled</option>
+            </select></div>
+        </div>
+        <div class="fg"><label class="lbl">Milestone Name <span class="req">*</span></label>
+          <input id="ms-name" class="fc" required>
+          <div class="f-err">Required</div></div>
+        <div class="fg"><label class="lbl">Description</label>
+          <textarea id="ms-description" class="fc" rows="2"></textarea></div>
+        <div class="fg-row">
+          <div class="fg"><label class="lbl">Planned Date</label>
+            <input id="ms-plannedDate" type="date" class="fc"></div>
+          <div class="fg"><label class="lbl">Actual Date</label>
+            <input id="ms-actualDate" type="date" class="fc">
+            <div class="f-hint">Leave blank if not yet reached.</div></div>
+        </div>
+        <div class="fg"><label class="lbl">Responsible Member(s)</label>
+          <input id="ms-responsible" class="fc"></div>
+        <div class="fg"><label class="lbl">Dependencies</label>
+          <input id="ms-dependencies" class="fc" placeholder="e.g. TSK-004 must complete first"></div>
+        <div class="fg"><label class="lbl">Evidence Link</label>
+          <input id="ms-evidence" class="fc" placeholder="https://…"></div>
+      </form>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" onclick="UI.closeModal('milestone-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveMilestone()">Save Milestone</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     CONFIRM DIALOG
+══════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="confirm-overlay" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title">
+  <div class="modal modal-sm">
+    <div class="modal-hdr">
+      <div class="modal-title" id="confirm-title">Confirm Action</div>
+    </div>
+    <div class="modal-body" style="text-align:center;padding:var(--sp-5)">
+      <div style="font-size:28px;margin-bottom:var(--sp-3)" aria-hidden="true">⚠</div>
+      <div id="confirm-message" class="t-sm" style="color:var(--text-2);line-height:1.6"></div>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-secondary" id="confirm-cancel">Cancel</button>
+      <button class="btn btn-danger" id="confirm-ok">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     TOAST CONTAINER
+══════════════════════════════════════════════════════════ -->
+<div id="toast-container" aria-live="polite" aria-label="Notifications"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SCRIPTS  (db → ui → app)
+══════════════════════════════════════════════════════════ -->
+<script src="assets/js/db.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>

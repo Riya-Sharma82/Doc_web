@@ -1,0 +1,19 @@
+{
+  "name": "search-engine-governance-portal",
+  "version": "2.1.0",
+  "description": "Faculty-review-grade documentation and progress tracking portal with persistent task evidence verification",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "governance",
+    "portal",
+    "evidence",
+    "verification",
+    "tasks"
+  ],
+  "author": "",
+  "license": "ISC"
+}
